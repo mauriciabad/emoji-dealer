@@ -1,0 +1,74 @@
+import React, { useEffect } from 'react';
+import useLocalStorageReducer from '../hooks/useLocalStorageReducer';
+import seedrandom from 'seedrandom';
+
+const GameContext = React.createContext();
+const GameDispatchContext = React.createContext();
+
+export const defaultSeed = 'DEFAULT_SEED_123456789';
+
+// Default game object
+const defaultGame = {
+  seed: defaultSeed,
+  round: 1,
+  orderedCards: ['🃏'],
+
+  player: 1,
+  shuffledCards: ['🃏'],
+  card: '🃏',
+}
+
+// Fisher-Yates Algorithm
+function shuffle(array, randomGenerator) {
+  array = [...array];
+  for(let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(randomGenerator() * i)
+    const temp = array[i]
+    array[i] = array[j]
+    array[j] = temp
+  }
+  return array;
+}
+
+const reducer = (state, {type, payload}) => {
+  switch (type) {
+    case "beginGame":
+      return { ...defaultGame, seed: (Math.random()*10000000000).toFixed(0), ...payload };
+    case "shuffle":
+      const randomGenerator = seedrandom(`${state.seed}-${state.round}`);
+      return { ...state, shuffledCards: shuffle(state.orderedCards, randomGenerator) };
+    case "updateCard":
+      return { ...state, card: state.shuffledCards[state.player - 1] };
+    case "nextRound":
+      return { ...state, round: payload.round + 1 };
+    case "prevRound":
+      return { ...state, round: (payload.round >= 2 ? payload.round - 1 : 1)};
+    default:
+      console.error(`Unknown action.type "${type}" for GameContext`);
+      return { ...state };
+  }
+};
+
+function GameContextProvider(props) {
+  let [game, dispatchGame] = useLocalStorageReducer(reducer, defaultGame, 'game');
+
+  useEffect(() => {
+    dispatchGame({type: 'shuffle'})
+  }, [game.orderedCards, game.seed, game.round, dispatchGame]);
+
+  useEffect(() => {
+    dispatchGame({type: 'updateCard'})
+  }, [game.shuffledCards, game.player, dispatchGame]);
+
+  return (
+    <GameContext.Provider value={game}>
+      <GameDispatchContext.Provider value={dispatchGame}>
+        {props.children}
+      </GameDispatchContext.Provider>
+    </GameContext.Provider>
+  );
+}
+
+const GameContextConsumer = GameContext.Consumer;
+
+export { GameContext, GameDispatchContext, GameContextProvider, GameContextConsumer };
