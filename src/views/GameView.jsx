@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import HeaderFooter from '../components/HeaderFooter';
 import useStyles from './GameViewStyles';
 import { GameContext } from '../contexts/GameContext';
@@ -6,6 +6,7 @@ import { GameDispatchContext } from '../contexts/GameContext';
 import { Paper, Button, Typography, IconButton } from '@material-ui/core';
 import NavigateNextIcon from '@material-ui/icons/NavigateNext';
 import NavigateBeforeIcon from '@material-ui/icons/NavigateBefore';
+import EditIcon from '@material-ui/icons/Edit';
 
 
 function getGameURL({seed, orderedCards}){
@@ -19,6 +20,8 @@ export default function GameView() {
   const classes = useStyles();
   const game = useContext(GameContext);
   const dispatchGame = useContext(GameDispatchContext);
+
+  if(isNaN(game.player)) handlePlayerEditClick();
 
   function shareJoinURL() {
     if(navigator.share){
@@ -36,6 +39,13 @@ export default function GameView() {
   function handlePrevRoundClick() {
     dispatchGame({type: 'prevRound'})
   }
+  function handlePlayerEditClick() {
+    let askedNumber;
+    while(isNaN(parseInt(askedNumber))) {
+      askedNumber = prompt("Player number", "");
+    }
+    dispatchGame({type: 'setPlayer', payload: {player: parseInt(askedNumber)}})
+  }
 
   return (
     <HeaderFooter className={classes.root}>
@@ -45,11 +55,14 @@ export default function GameView() {
         <IconButton onClick={handleNextRoundClick}><NavigateNextIcon /></IconButton>
       </div>
 
+      <div className={classes.playerButtons}>
+        <Typography variant="h6" className={classes.roundButtonsTitle}>Player {game.player}</Typography>
+        <IconButton onClick={handlePlayerEditClick}><EditIcon /></IconButton>
+      </div>
+
+
       <Paper>
-        <ul>
-          <li><b>Player: </b> {game.player}</li>
-          <li><b>Cards: </b> {game.orderedCards.join(' ')}</li>
-        </ul>
+        {game.orderedCards.join(' ')}
       </Paper>
 
       <Paper className={classes.mainCard}>{game.card}</Paper>

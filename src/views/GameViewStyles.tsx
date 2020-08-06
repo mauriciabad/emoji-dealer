@@ -20,6 +20,12 @@ export default makeStyles((theme: Theme) => createStyles({
     alignItems: 'stretch',
     margin: `${theme.spacing(2)}px 0`,
   },
+  playerButtons: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    margin: `${theme.spacing(2)}px 0`,
+  },
   roundButtonsTitle: {
     opacity: 0.8,
   },
