@@ -41,7 +41,7 @@ export default function GameView() {
           <li><b>Seed: </b> {game.seed}</li>
           <li><b>Round: </b> {game.round}</li>
           <li><b>Player: </b> {game.player}</li>
-          <li><b>Cards: </b> ["{game.orderedCards.join('", "')}"]</li>
+          <li><b>Cards: </b> {game.orderedCards.join(' ')}</li>
         </ul>
       </Paper>
       <Paper className={classes.mainCard}>{game.card}</Paper>
