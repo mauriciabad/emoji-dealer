@@ -12,7 +12,7 @@ export default function App() {
     <GlobalContext>
       <Switch>
         {/* <Route        exact path="/"          children={<HomeView />} /> */}
-        <Redirect     exact path='/' to="/game/new" />
+        <Redirect     exact path='/' to="/game" />
         <HasGameRoute exact path="/game"      children={<GameView />} />
         <Route        exact path="/game/join" children={<GameJoinView />} />
         <Route        exact path="/game/new"  children={<GameNewView />} />
