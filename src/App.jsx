@@ -1,6 +1,5 @@
 import React from 'react';
 import {Route, Redirect, Switch } from 'react-router-dom';
-import HomeView from './views/HomeView';
 import GameView from './views/GameView';
 import GameJoinView from './views/GameJoinView';
 import GameNewView from './views/GameNewView';
