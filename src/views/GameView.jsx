@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import HeaderFooter from '../components/HeaderFooter';
 import useStyles from './GameViewStyles';
 import { GameContext } from '../contexts/GameContext';
-import { Paper } from '@material-ui/core';
+import { Paper, Button } from '@material-ui/core';
 
 function getGameURL({seed, orderedCards}){
   const params = new URLSearchParams();
@@ -15,7 +15,15 @@ export default function GameView() {
   const classes = useStyles();
   const game = useContext(GameContext);
 
-  console.log(getGameURL(game)); 
+  function shareJoinURL() {
+    if(navigator.share){
+      navigator.share({title: 'Game invitation', url: getGameURL(game)})
+    }else {
+      if(navigator.clipboard) {
+        navigator.clipboard.writeText(getGameURL(game))
+      }
+    }
+  }
 
   return (
     <HeaderFooter className={classes.root}>
@@ -28,6 +36,7 @@ export default function GameView() {
         </ul>
       </Paper>
       <Paper className={classes.mainCard}>{game.card}</Paper>
+      <Button variant="contained" color="primary" onClick={shareJoinURL}>Share</Button>
     </HeaderFooter>
   );
 }
