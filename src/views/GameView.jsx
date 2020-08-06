@@ -8,7 +8,7 @@ function getGameURL({seed, orderedCards}){
   const params = new URLSearchParams();
   params.append('seed', seed);
   params.append('cards', JSON.stringify(orderedCards));
-  console.log(`${process.env.REACT_APP_DOMAIN}/game/join?${params.toString()}`)
+  return `${process.env.REACT_APP_DOMAIN}/game/join?${params.toString()}`;
 }
 
 export default function GameView() {
