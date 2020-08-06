@@ -22,7 +22,7 @@ export default function GameNewView() {
       .map((val) => val.trim())
       .filter((val) => val !== '');
 
-      dispatchGame({type: 'beginGame', payload: { orderedCards }});
+      dispatchGame({type: 'beginGame', payload: { orderedCards, player: 1 }});
       history.replace('/game');
   }
 

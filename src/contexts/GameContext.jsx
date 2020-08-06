@@ -13,7 +13,7 @@ const defaultGame = {
   round: 1,
   orderedCards: ['🃏'],
 
-  player: 1,
+  player: null,
   shuffledCards: ['🃏'],
   card: '🃏',
 }
@@ -38,11 +38,13 @@ const reducer = (state, {type, payload}) => {
       const randomGenerator = seedrandom(`${state.seed}-${state.round}`);
       return { ...state, shuffledCards: shuffle(state.orderedCards, randomGenerator) };
     case "updateCard":
-      return { ...state, card: state.shuffledCards[state.player - 1] };
+      return { ...state, card: state.shuffledCards[(state.player || 1) - 1] };
     case "nextRound":
       return { ...state, round: state.round + 1 };
     case "prevRound":
       return { ...state, round: (state.round >= 2 ? state.round - 1 : 1)};
+    case "setPlayer":
+      return { ...state, player: payload.player };
     default:
       console.error(`Unknown action.type "${type}" for GameContext`);
       return { ...state };

@@ -17,7 +17,11 @@ export default makeStyles((theme: Theme) => createStyles({
   roundButtons: {
     display: 'flex',
     justifyContent: 'space-between',
+    alignItems: 'stretch',
     margin: `${theme.spacing(2)}px 0`,
+  },
+  roundButtonsTitle: {
+    opacity: 0.8,
   },
   shareButton: {
     display: 'flex',
