@@ -13,5 +13,15 @@ export default makeStyles((theme: Theme) => createStyles({
     alignItems: 'center',
     justifyContent: 'center',
     lineHeight: 1,
-  }
+  },
+  roundButtons: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    margin: `${theme.spacing(2)}px 0`,
+  },
+  shareButton: {
+    display: 'flex',
+    justifyContent: 'center',
+    margin: `${theme.spacing(2)}px 0`,
+  },
 }));

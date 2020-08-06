@@ -40,9 +40,9 @@ const reducer = (state, {type, payload}) => {
     case "updateCard":
       return { ...state, card: state.shuffledCards[state.player - 1] };
     case "nextRound":
-      return { ...state, round: payload.round + 1 };
+      return { ...state, round: state.round + 1 };
     case "prevRound":
-      return { ...state, round: (payload.round >= 2 ? payload.round - 1 : 1)};
+      return { ...state, round: (state.round >= 2 ? state.round - 1 : 1)};
     default:
       console.error(`Unknown action.type "${type}" for GameContext`);
       return { ...state };
