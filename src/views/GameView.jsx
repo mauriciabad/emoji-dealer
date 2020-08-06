@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext } from 'react';
 import HeaderFooter from '../components/HeaderFooter';
 import useStyles from './GameViewStyles';
 import { GameContext } from '../contexts/GameContext';
