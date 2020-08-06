@@ -29,6 +29,8 @@ export default makeStyles((theme: Theme) => createStyles({
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
+    flexWrap: 'wrap',
+    overflow: 'hidden',
   },
   card: {
     padding: theme.spacing(1),

@@ -4,6 +4,7 @@ import useStyles from './GameNewViewStyles';
 import { TextField, Paper, Button, Typography } from '@material-ui/core';
 import { GameDispatchContext } from '../contexts/GameContext';
 import { useHistory } from 'react-router-dom';
+import GraphemeSplitter from 'grapheme-splitter';
 
 export default function GameNewView() {
   const classes = useStyles();
@@ -13,14 +14,12 @@ export default function GameNewView() {
 
 
   function handleCardsStringChange(e) {
-    setCardsString(e.target.value);
+    setCardsString(e.target.value.replace(/\s/g, ''));
   }
 
   function handleCreateClick() {
-    const orderedCards = cardsString
-      .split('\n')
-      .map((val) => val.trim())
-      .filter((val) => val !== '');
+      const splitter = new GraphemeSplitter();
+      const orderedCards = splitter.splitGraphemes(cardsString);
 
       dispatchGame({type: 'beginGame', payload: { orderedCards, player: 1 }});
       history.replace('/game');

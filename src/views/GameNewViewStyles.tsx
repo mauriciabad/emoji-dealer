@@ -9,5 +9,6 @@ export default makeStyles((theme: Theme) => createStyles({
   },
   textArea: {
     width: '100%',
+    fontSize: '2rem',
   },
 }));
