@@ -55,15 +55,16 @@ export default function GameView() {
         <IconButton onClick={handleNextRoundClick}><NavigateNextIcon /></IconButton>
       </div>
 
+      <div className={classes.cards}>
+        {game.orderedCards.map((value, index) => {
+          return <Paper className={classes.card}>{value}</Paper>
+        })}
+      </div>
+
       <div className={classes.playerButtons}>
         <Typography variant="h6" className={classes.roundButtonsTitle}>Player {game.player}</Typography>
         <IconButton onClick={handlePlayerEditClick}><EditIcon /></IconButton>
       </div>
-
-
-      <Paper>
-        {game.orderedCards.join(' ')}
-      </Paper>
 
       <Paper className={classes.mainCard}>{game.card}</Paper>
       
