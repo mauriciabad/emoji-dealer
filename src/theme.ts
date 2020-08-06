@@ -43,7 +43,7 @@ const theme = createMuiTheme({
       dark: '#9a0007',
     },
     background: {
-      default: '#266340',
+      default: '#86bb51',
     }
   },
 });
