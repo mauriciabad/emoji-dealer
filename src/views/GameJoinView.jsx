@@ -3,6 +3,7 @@ import HeaderFooter from '../components/HeaderFooter';
 import useStyles from './GameJoinViewStyles';
 import { GameDispatchContext } from '../contexts/GameContext';
 import { useLocation, useHistory } from 'react-router-dom';
+import GraphemeSplitter from 'grapheme-splitter';
 
 export default function GameJoinView() {
   const classes = useStyles();
@@ -15,7 +16,10 @@ export default function GameJoinView() {
     const queryParams = new URLSearchParams(location.search);
     if(queryParams.has('seed') && queryParams.has('cards')){
       const seed = queryParams.get('seed');
-      const orderedCards = JSON.parse(queryParams.get('cards'));
+
+      const cardsString = JSON.parse(queryParams.get('cards'));
+      const splitter = new GraphemeSplitter();
+      const orderedCards = splitter.splitGraphemes(cardsString);
     
       dispatchGame({type: 'beginGame', payload: {seed, orderedCards}})
   
