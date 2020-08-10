@@ -1,4 +1,5 @@
 import { createMuiTheme } from "@material-ui/core/styles";
+import bgImage from "./assets/backgrounds/cheap_diagonal_fabric_green_4.png";
 
 const webSafeFonts = [
   '-apple-system',
@@ -43,9 +44,19 @@ const theme = createMuiTheme({
       dark: '#9a0007',
     },
     background: {
-      default: '#86bb51',
+      default: '#d9d9d9',
     }
   },
+  overrides: {
+    MuiCssBaseline: {
+      "@global": {
+        body: {
+          backgroundImage:
+            `url(${bgImage})`
+        }
+      }
+    }
+  }
 });
 
 export default theme;
