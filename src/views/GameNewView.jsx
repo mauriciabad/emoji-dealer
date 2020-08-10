@@ -35,6 +35,7 @@ export default function GameNewView() {
           id="outlined-multiline-static"
           multiline
           rows={3}
+          autoFocus
           defaultValue={cardsString}
           variant="outlined"
           className={classes.textArea}
