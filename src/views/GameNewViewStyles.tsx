@@ -9,6 +9,9 @@ export default makeStyles((theme: Theme) => createStyles({
   },
   textArea: {
     width: '100%',
-    fontSize: '2rem',
+  },
+  textAreaInput: {
+    fontSize: '1.5rem',
+    lineHeight: 1.5,
   },
 }));

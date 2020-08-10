@@ -29,15 +29,19 @@ export default function GameNewView() {
     <HeaderFooter className={classes.root}>
       <Paper className={classes.paper}>
         <Typography variant="h4">Emoji list</Typography>
-        <Typography variant="body1">Each line is a card</Typography>
         <TextField
           id="outlined-multiline-static"
           multiline
-          rows={10}
+          rows={3}
           defaultValue={cardsString}
           variant="outlined"
           className={classes.textArea}
           value={cardsString} onChange={handleCardsStringChange}
+          InputProps={{
+            classes: {
+              input: classes.textAreaInput,
+            },
+          }}
         />
       </Paper>
       <Button variant="contained" color="primary" onClick={handleCreateClick}>Create</Button>

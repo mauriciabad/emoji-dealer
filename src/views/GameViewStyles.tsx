@@ -20,11 +20,6 @@ export default makeStyles((theme: Theme) => createStyles({
     alignItems: 'stretch',
     margin: `${theme.spacing(2)}px 0 0 0`,
   },
-  playerButtons: {
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
   cards: {
     whiteSpace: 'nowrap',
     overflow: 'auto',
@@ -43,10 +38,5 @@ export default makeStyles((theme: Theme) => createStyles({
   },
   roundButtonsTitle: {
     opacity: 0.8,
-  },
-  shareButton: {
-    display: 'flex',
-    justifyContent: 'center',
-    margin: `${theme.spacing(2)}px 0`,
   },
 }));
