@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react';
-import { AppBar, Toolbar, Typography, IconButton, Snackbar } from '@material-ui/core';
+import { AppBar, Toolbar, IconButton, Snackbar } from '@material-ui/core';
 import ShareIcon from '@material-ui/icons/Share';
 import RefreshIcon from '@material-ui/icons/Refresh';
 import PersonIcon from '@material-ui/icons/Person';
