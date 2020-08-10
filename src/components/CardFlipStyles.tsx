@@ -1,5 +1,6 @@
 import { makeStyles, createStyles, Theme } from '@material-ui/core';
 import cardBackPatternImg from '../assets/card-back-pattern.svg';
+import PaperImg from '../assets/backgrounds/dust_scratches.png';
 
 export default makeStyles((theme: Theme) => createStyles({
   root: {
@@ -16,6 +17,8 @@ export default makeStyles((theme: Theme) => createStyles({
     position: 'relative',
     transition: 'transform 500ms ease-out',
     transformStyle: 'preserve-3d',
+    transform: 'rotate(-1deg)',
+    transformOrigin: 'center center 7.5rem',
     '& > *': {
       position: 'absolute',
       width: '100%',
@@ -24,9 +27,10 @@ export default makeStyles((theme: Theme) => createStyles({
     },
   },
   cardRevealed: {
-    transform: 'rotateY(-180deg)',
+    transform: 'rotate(1deg) rotateY(-180deg) translateZ(15rem)',
   },
   front: {
+    background: `url(${PaperImg}) center center repeat`,
     borderRadius: '0.75rem',
     fontSize: '7.5rem',
     textAlign: 'center',
@@ -37,6 +41,7 @@ export default makeStyles((theme: Theme) => createStyles({
     overflow: 'hidden',
   },
   back: {
+    background: `url(${PaperImg}) center center repeat`,
     borderRadius: '0.75rem',
     transform: 'rotateY(-180deg)',
     padding: theme.spacing(2),
