@@ -1,5 +1,4 @@
 import { makeStyles, createStyles, Theme } from '@material-ui/core';
-import cardBackPatternImg from '../assets/card-back-pattern.svg';
 
 export default makeStyles((theme: Theme) => createStyles({
   root: {
