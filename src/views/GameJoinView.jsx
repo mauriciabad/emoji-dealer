@@ -17,7 +17,7 @@ export default function GameJoinView() {
     if(queryParams.has('seed') && queryParams.has('cards')){
       const seed = queryParams.get('seed');
 
-      const cardsString = JSON.parse(queryParams.get('cards'));
+      const cardsString = queryParams.get('cards');
       const splitter = new GraphemeSplitter();
       const orderedCards = splitter.splitGraphemes(cardsString);
     

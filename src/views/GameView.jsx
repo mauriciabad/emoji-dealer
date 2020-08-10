@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import HeaderFooter from '../components/HeaderFooter';
 import useStyles from './GameViewStyles';
 import { GameContext } from '../contexts/GameContext';
@@ -6,13 +6,22 @@ import { GameDispatchContext } from '../contexts/GameContext';
 import { Paper, Typography, IconButton } from '@material-ui/core';
 import NavigateNextIcon from '@material-ui/icons/NavigateNext';
 import NavigateBeforeIcon from '@material-ui/icons/NavigateBefore';
+import DialogPlayerNumber from '../components/DialogPlayerNumber';
 
 export default function GameView() {
   const classes = useStyles();
   const game = useContext(GameContext);
   const dispatchGame = useContext(GameDispatchContext);
 
-  // if(isNaN(game.player)) setOpenPlayerDialog(true);
+  
+  const [openPlayerDialog, setOpenPlayerDialog] = useState(false);
+  const handleDialogPlayerClose = () => {
+    setOpenPlayerDialog(false);
+  };
+  
+  useEffect(() => {
+    if(!game.player) setOpenPlayerDialog(true);
+  }, [game.player])
 
   function handleNextRoundClick() {
     dispatchGame({type: 'nextRound'})
@@ -36,6 +45,8 @@ export default function GameView() {
       </div>
 
       <Paper className={classes.mainCard}>{game.card}</Paper>
+
+      <DialogPlayerNumber open={openPlayerDialog} onClose={handleDialogPlayerClose} />
     </HeaderFooter>
   );
 }

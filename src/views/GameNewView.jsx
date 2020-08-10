@@ -2,14 +2,16 @@ import React, { useState, useContext } from 'react';
 import HeaderFooter from '../components/HeaderFooter';
 import useStyles from './GameNewViewStyles';
 import { TextField, Paper, Button, Typography } from '@material-ui/core';
+import { GameContext } from '../contexts/GameContext';
 import { GameDispatchContext } from '../contexts/GameContext';
 import { useHistory } from 'react-router-dom';
 import GraphemeSplitter from 'grapheme-splitter';
 
 export default function GameNewView() {
   const classes = useStyles();
-  let [cardsString, setCardsString] = useState('');
+  const game = useContext(GameContext);
   const dispatchGame = useContext(GameDispatchContext);
+  let [cardsString, setCardsString] = useState(game.orderedCards.join(''));
   const history = useHistory();
 
 

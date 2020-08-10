@@ -11,11 +11,11 @@ export const defaultSeed = 'DEFAULT_SEED_123456789';
 const defaultGame = {
   seed: defaultSeed,
   round: 1,
-  orderedCards: ['🃏'],
+  orderedCards: [],
 
   player: null,
-  shuffledCards: ['🃏'],
-  card: '🃏',
+  shuffledCards: [],
+  card: '',
 }
 
 // Fisher-Yates Algorithm
@@ -36,7 +36,7 @@ const reducer = (state, {type, payload}) => {
       const randomGenerator = seedrandom(`${state.seed}-${state.round}`);
       return { ...state, shuffledCards: shuffle(state.orderedCards, randomGenerator) };
     case "updateCard":
-      return { ...state, card: state.shuffledCards[(state.player || 1) - 1] };
+      return { ...state, card: state.shuffledCards[state.player - 1] || '' };
     case "nextRound":
       return { ...state, round: state.round + 1 };
     case "prevRound":
