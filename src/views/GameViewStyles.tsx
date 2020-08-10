@@ -1,4 +1,5 @@
 import { makeStyles, createStyles, Theme } from '@material-ui/core';
+import cardBackPatternImg from '../assets/card-back-pattern.svg';
 
 export default makeStyles((theme: Theme) => createStyles({
   root: {
@@ -13,6 +14,21 @@ export default makeStyles((theme: Theme) => createStyles({
     alignItems: 'center',
     justifyContent: 'center',
     lineHeight: 1,
+    overflow: 'hidden',
+  },
+  mainCardBack: {
+    width: '15rem',
+    height: `${(170/122)*15}rem`,
+    margin: 'auto',
+    padding: theme.spacing(2),
+    '&::before': {
+      content: `''`,
+      width: '100%',
+      height: '100%',
+      display: 'block',
+      background: `#000 url(${cardBackPatternImg}) repeat center`,
+      backgroundSize: `${theme.spacing(4)}px`
+    }
   },
   roundButtons: {
     display: 'flex',
