@@ -6,6 +6,8 @@ import PersonIcon from '@material-ui/icons/Person';
 import {Link} from 'react-router-dom';
 import { GameContext, defaultSeed } from '../contexts/GameContext';
 import DialogPlayerNumber from './DialogPlayerNumber';
+import AppBarBgImg from '../assets/backgrounds/wood_pattern_dark.png';
+// import AppBarBgImg2x from '../assets/backgrounds/wood_pattern_dark_@2X.png';
 
 function getGameURL({seed, orderedCards}){
   const params = new URLSearchParams();
@@ -44,15 +46,12 @@ export default function AppBarTop() {
   }
 
   return (
-    <AppBar position="static">
-      <Toolbar>
-        <Typography variant="h6" color="inherit" style={{flexGrow: 1}}>
-          Emoji dealer
-        </Typography>
+    <AppBar position="static" style={{background: `url(${AppBarBgImg}) repeat center bottom`}} elevation={12}>
+      <Toolbar style={{justifyContent: 'center'}}>
 
         {game.seed !== defaultSeed && (
           <>
-            <IconButton edge="end" color="inherit" onClick={shareJoinURL}>
+            <IconButton edge="end" color="inherit" onClick={shareJoinURL} style={{padding: '0 1rem'}}>
               <ShareIcon />
             </IconButton>
             <Snackbar 
@@ -62,11 +61,11 @@ export default function AppBarTop() {
             />
           </>
         )}
-        <IconButton edge="end" color="inherit" onClick={handleDialogPlayerOpen}>
+        <IconButton edge="end" color="inherit" onClick={handleDialogPlayerOpen} style={{padding: '0 1rem'}}>
           <PersonIcon /><small style={{fontSize: '0.667em'}}>{game.player}</small>
         </IconButton>
         <DialogPlayerNumber open={openPlayerDialog} onClose={handleDialogPlayerClose} />
-        <IconButton edge="end" color="inherit" to="/game/new" component={Link}>
+        <IconButton edge="end" color="inherit" to="/game/new" component={Link} style={{padding: '0 1rem'}}>
           <RefreshIcon />
         </IconButton>
       </Toolbar>
