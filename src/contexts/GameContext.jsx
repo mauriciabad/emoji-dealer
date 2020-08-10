@@ -22,10 +22,8 @@ const defaultGame = {
 function shuffle(array, randomGenerator) {
   array = [...array];
   for(let i = array.length - 1; i > 0; i--) {
-    const j = Math.floor(randomGenerator() * i)
-    const temp = array[i]
-    array[i] = array[j]
-    array[j] = temp
+    const j = Math.floor(randomGenerator() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
   }
   return array;
 }
