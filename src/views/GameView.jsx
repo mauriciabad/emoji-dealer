@@ -31,7 +31,7 @@ export default function GameView() {
 
       <div className={classes.cards}>
         {game.orderedCards.map((value, index) => {
-          return <Paper className={classes.card}>{value}</Paper>
+          return <Paper key={index} className={classes.card}>{value}</Paper>
         })}
       </div>
 
