@@ -5,30 +5,11 @@ export default makeStyles((theme: Theme) => createStyles({
   root: {
   },
   mainCard: {
-    fontSize: '7.5rem',
-    textAlign: 'center',
-    width: '15rem',
-    height: `${(170/122)*15}rem`,
-    margin: 'auto',
+    margin: `${theme.spacing(3)}px auto`,
+    flexGrow: 1,
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    lineHeight: 1,
-    overflow: 'hidden',
-  },
-  mainCardBack: {
-    width: '15rem',
-    height: `${(170/122)*15}rem`,
-    margin: 'auto',
-    padding: theme.spacing(2),
-    '&::before': {
-      content: `''`,
-      width: '100%',
-      height: '100%',
-      display: 'block',
-      background: `#000 url(${cardBackPatternImg}) repeat center`,
-      backgroundSize: `${theme.spacing(4)}px`
-    }
   },
   roundButtons: {
     display: 'flex',
@@ -37,9 +18,9 @@ export default makeStyles((theme: Theme) => createStyles({
     margin: `${theme.spacing(2)}px 0 0 0`,
   },
   cards: {
-    whiteSpace: 'nowrap',
-    overflow: 'auto',
-    textAlign: 'center',
+    display: 'flex',
+    flexWrap: 'wrap',
+    justifyContent: 'center',
   },
   card: {
     padding: theme.spacing(1),
