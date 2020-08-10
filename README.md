@@ -1,5 +1,5 @@
 # Card Dealer app
-[![Netlify Status](https://api.netlify.com/api/v1/badges//deploy-status)](https://app.netlify.com/sites/card-dealer/deploys)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/17eb94b6-6fcc-4dad-80e5-cde787a090ed/deploy-status)](https://app.netlify.com/sites/emojidealer/deploys)
 
 ## Setup
 
