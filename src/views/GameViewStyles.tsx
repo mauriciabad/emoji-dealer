@@ -49,7 +49,7 @@ export default makeStyles((theme: Theme) => createStyles({
       width: '100%',
       height: '100%',
       display: 'block',
-      background: `#000 url(${cardBackPatternImg}) repeat center`,
+      background: `url(${cardBackPatternImg}) repeat center`,
       backgroundSize: `${theme.spacing(4)}px`
     }
   },
