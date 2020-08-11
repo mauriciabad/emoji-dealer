@@ -3,9 +3,8 @@ import HeaderFooter from '../components/HeaderFooter';
 import useStyles from './GameViewStyles';
 import { GameContext } from '../contexts/GameContext';
 import { GameDispatchContext } from '../contexts/GameContext';
-import { Paper, Typography, IconButton } from '@material-ui/core';
+import { Paper, Typography, Button } from '@material-ui/core';
 import NavigateNextIcon from '@material-ui/icons/NavigateNext';
-import NavigateBeforeIcon from '@material-ui/icons/NavigateBefore';
 import DialogPlayerNumber from '../components/DialogPlayerNumber';
 import { motion, useAnimation } from "framer-motion";
 
@@ -70,9 +69,7 @@ export default function GameView() {
   return (
     <HeaderFooter className={classes.root}>
       <div className={classes.roundButtons}>
-        <IconButton><NavigateBeforeIcon /></IconButton>
         <Typography variant="h3" className={classes.roundButtonsTitle}>Round {game.round}</Typography>
-        <IconButton onClick={handleNextRoundClick}><NavigateNextIcon /></IconButton>
       </div>
 
       <div className={classes.smallCards}>
@@ -118,6 +115,18 @@ export default function GameView() {
           </motion.div>
         </motion.div>
       </div>
+
+      <Button 
+          variant="contained" 
+          color="primary" 
+          className={classes.bottomButton}
+          size="large"
+          onClick={handleNextRoundClick}
+          endIcon={<NavigateNextIcon />}
+          startIcon={<NavigateNextIcon />}
+          >
+          Next round
+        </Button>
 
       <DialogPlayerNumber open={openPlayerDialog} onClose={handleDialogPlayerClose} />
     </HeaderFooter>

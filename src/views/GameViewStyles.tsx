@@ -1,5 +1,6 @@
 import { makeStyles, createStyles, Theme } from '@material-ui/core';
 import cardBackPatternImg from '../assets/card-back-pattern.svg';
+import AppBarBgImg from '../assets/backgrounds/wood_pattern_dark.png';
 
 export default makeStyles((theme: Theme) => createStyles({
   root: {
@@ -77,4 +78,11 @@ export default makeStyles((theme: Theme) => createStyles({
   roundButtonsTitle: {
     opacity: 0.8,
   },
+  bottomButton: {
+    background: `url(${AppBarBgImg}) repeat center bottom`,
+    borderRadius: 0,
+    width: '100vw',
+    height: '56px',
+    boxShadow: '0px -7px 8px -4px rgba(0,0,0,0.2), 0px -12px 17px 2px rgba(0,0,0,0.14), 0px -5px 22px 4px rgba(0,0,0,0.12) !important'
+  }
 }));
