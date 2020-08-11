@@ -3,7 +3,7 @@ import HeaderFooter from '../components/HeaderFooter';
 import useStyles from './GameViewStyles';
 import { GameContext } from '../contexts/GameContext';
 import { GameDispatchContext } from '../contexts/GameContext';
-import { Paper, Typography, Button } from '@material-ui/core';
+import { Paper, Typography, Button,Dialog, DialogTitle, DialogContent, DialogActions, DialogContentText } from '@material-ui/core';
 import NavigateNextIcon from '@material-ui/icons/NavigateNext';
 import DialogPlayerNumber from '../components/DialogPlayerNumber';
 import { motion, useAnimation } from "framer-motion";
@@ -33,6 +33,7 @@ export default function GameView() {
   const controlsCardOld = useAnimation();
 
   const [openPlayerDialog, setOpenPlayerDialog] = useState(false);
+  const [openConfirmDialog, setOpenConfirmDialog] = useState(false);
   const [cardRevealed, setCardRevealed] = useState(false);
   const [oldCardRevealed, setOldCardRevealed] = useState(cardRevealed);
   const [oldCard, setOldCard] = useState(game.card);
@@ -40,6 +41,12 @@ export default function GameView() {
 
   const handleDialogPlayerClose = () => {
     setOpenPlayerDialog(false);
+  };
+
+  const handleDialogConfirmClose = (confirmed) => {
+    setOpenConfirmDialog(false);
+
+    if(confirmed) nextRound();
   };
 
   useEffect(() => {
@@ -51,6 +58,10 @@ export default function GameView() {
   }
 
   function handleNextRoundClick() {
+    setOpenConfirmDialog(true)
+  }
+
+  function nextRound() {
     setOldCard(game.card);
     setOldCardRevealed(cardRevealed);
 
@@ -129,6 +140,27 @@ export default function GameView() {
         </Button>
 
       <DialogPlayerNumber open={openPlayerDialog} onClose={handleDialogPlayerClose} />
+
+      <Dialog open={openConfirmDialog} onClose={() => handleDialogConfirmClose(false)} aria-labelledby="form-dialog-title">
+        <DialogTitle id="form-dialog-title">Go to next round?</DialogTitle>
+
+        <DialogContent>
+
+          <DialogContentText>
+            Make sure that everyone else also goes to the next round at the same time.
+          </DialogContentText>
+
+        </DialogContent>
+
+        <DialogActions>
+          <Button onClick={() => handleDialogConfirmClose(false)} color="primary">
+            Nope
+          </Button>
+          <Button onClick={() => handleDialogConfirmClose(true)} color="primary">
+            Yess
+          </Button>
+        </DialogActions>
+      </Dialog>
     </HeaderFooter>
   );
 }
