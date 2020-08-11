@@ -5,6 +5,7 @@ export default makeStyles((theme: Theme) => createStyles({
     minHeight: '100%',
     display: 'flex',
     flexDirection: 'column',
+    overflow: 'hidden',
   },
   container: {
     flexGrow: 1,
