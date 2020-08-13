@@ -5,7 +5,7 @@ import seedrandom from 'seedrandom';
 const GameContext = React.createContext();
 const GameDispatchContext = React.createContext();
 
-export const defaultSeed = 'DEFAULT_SEED_123456789';
+export const defaultSeed = 'SEED';
 
 // Default game object
 const defaultGame = {
@@ -31,7 +31,7 @@ function shuffle(array, randomGenerator) {
 const reducer = (state, {type, payload}) => {
   switch (type) {
     case "beginGame":
-      return { ...defaultGame, seed: (Math.random()*10000000000).toFixed(0), ...payload };
+      return { ...defaultGame, seed: Math.random().toString(36).substring(2, 6), ...payload };
     case "shuffle":
       const randomGenerator = seedrandom(`${state.seed}-${state.round}`);
       return { ...state, shuffledCards: shuffle(state.orderedCards, randomGenerator) };
