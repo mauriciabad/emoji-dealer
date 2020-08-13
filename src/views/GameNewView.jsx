@@ -7,6 +7,13 @@ import { GameDispatchContext } from '../contexts/GameContext';
 import { useHistory } from 'react-router-dom';
 import GraphemeSplitter from 'grapheme-splitter';
 
+function getGameURL({seed, orderedCards}){
+  const params = new URLSearchParams();
+  params.append('seed', seed);
+  params.append('cards', orderedCards.join(''));
+  return `${process.env.REACT_APP_DOMAIN}/game/join?${params.toString()}`;
+}
+
 export default function GameNewView() {
   const classes = useStyles();
   const game = useContext(GameContext);
@@ -14,6 +21,13 @@ export default function GameNewView() {
   let [cardsString, setCardsString] = useState(game.orderedCards.join(''));
   const history = useHistory();
 
+  const shareJoinURL = () => {
+    const invitationURL = getGameURL(game);
+
+    if(navigator.share){
+      navigator.share({title: 'Game invitation', url: invitationURL})
+    }
+  }
 
   function handleCardsStringChange(e) {
     setCardsString(e.target.value.replace(/\s/g, ''));
@@ -25,6 +39,7 @@ export default function GameNewView() {
 
       dispatchGame({type: 'beginGame', payload: { orderedCards, player: 1 }});
       history.replace('/game');
+      shareJoinURL();
   }
 
   return (
