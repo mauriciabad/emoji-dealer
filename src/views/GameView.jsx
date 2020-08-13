@@ -157,7 +157,7 @@ export default function GameView() {
             Nope
           </Button>
           <Button onClick={() => handleDialogConfirmClose(true)} color="primary">
-            Yess
+            Yes
           </Button>
         </DialogActions>
       </Dialog>
