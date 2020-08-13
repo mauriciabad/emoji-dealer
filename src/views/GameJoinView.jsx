@@ -14,10 +14,10 @@ export default function GameJoinView() {
 
   useEffect(() => {
     const queryParams = new URLSearchParams(location.search);
-    if(queryParams.has('seed') && queryParams.has('cards')){
-      const seed = queryParams.get('seed');
+    if(queryParams.has('s') && queryParams.has('c')){
+      const seed = queryParams.get('s');
 
-      const cardsString = queryParams.get('cards');
+      const cardsString = queryParams.get('c');
       const splitter = new GraphemeSplitter();
       const orderedCards = splitter.splitGraphemes(cardsString);
     
