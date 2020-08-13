@@ -57,12 +57,16 @@ export default makeStyles((theme: Theme) => createStyles({
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'stretch',
-    margin: `${theme.spacing(2)}px 0 0 0`,
+    margin: `${theme.spacing(2)}px 0 ${theme.spacing(1)}px 0`,
+    [theme.breakpoints.down(350)]: {
+      margin: `${theme.spacing(1)}px 0 0 0`,
+    },
   },
   smallCards: {
     display: 'flex',
     flexWrap: 'wrap',
     justifyContent: 'center',
+    margin: -4
   },
   smallCard: {
     padding: theme.spacing(1),
@@ -72,11 +76,15 @@ export default makeStyles((theme: Theme) => createStyles({
     justifyContent: 'center',
     alignItems: 'center',
     overflow: 'hidden',
-    margin: '4px',
+    margin: 4,
     lineHeight: 1,
   },
   roundButtonsTitle: {
     opacity: 0.8,
+    textAlign: 'center',
+    [theme.breakpoints.down(350)]: {
+      fontSize: '2.5rem',
+    },
   },
   bottomButton: {
     background: `url(${AppBarBgImg}) repeat center bottom`,
