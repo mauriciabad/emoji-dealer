@@ -1,5 +1,5 @@
 import { createMuiTheme } from "@material-ui/core/styles";
-import bgImage from "./assets/backgrounds/cheap_diagonal_fabric_green_4.png";
+import bgImage from "./assets/backgrounds/cheap_diagonal_fabric.png";
 
 const webSafeFonts = [
   '-apple-system',
@@ -13,6 +13,18 @@ const webSafeFonts = [
   '"Segoe UI Emoji"',
   '"Segoe UI Symbol"',
 ]
+
+export const bgColors = [
+  '#64b163',
+  '#49e4e4',
+  '#5f9fff',
+  '#d684ff',
+  '#ffa6bb',
+  '#ff6767',
+  '#ff845f',
+  '#ffdc7b',
+  '#dee0e0',
+];
 
 // const roundedFonts = [
 //   'Quicksand',
@@ -51,8 +63,10 @@ const theme = createMuiTheme({
     MuiCssBaseline: {
       "@global": {
         body: {
-          backgroundImage:
-            `url(${bgImage})`
+          backgroundBlendMode: 'multiply',
+          backgroundColor: bgColors[0],
+          backgroundImage: `url(${bgImage})`,
+          transition: 'background-color 200ms cubic-bezier(0.45, 0.05, 0.55, 0.95)',
         }
       }
     }

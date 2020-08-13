@@ -7,6 +7,20 @@ import { Paper, Typography, Button,Dialog, DialogTitle, DialogContent, DialogAct
 import NavigateNextIcon from '@material-ui/icons/NavigateNext';
 import DialogPlayerNumber from '../components/DialogPlayerNumber';
 import { motion, useAnimation } from "framer-motion";
+import { bgColors } from "../theme";
+
+function hashCode(s) {
+  let hash = 0;
+  if (s.length === 0) return hash;
+
+  for (let i = 0; i < s.length; i++) {
+      let char = s.charCodeAt(i);
+      hash = ((hash<<5)-hash)+char;
+      hash = hash & hash; // Convert to 32bit integer
+  }
+
+  return hash;
+};
 
 const variants = {
   left: {
@@ -38,7 +52,6 @@ export default function GameView() {
   const [oldCardRevealed, setOldCardRevealed] = useState(cardRevealed);
   const [oldCard, setOldCard] = useState(game.card);
 
-
   const handleDialogPlayerClose = () => {
     setOpenPlayerDialog(false);
   };
@@ -51,7 +64,11 @@ export default function GameView() {
 
   useEffect(() => {
     if(!game.player) setOpenPlayerDialog(true);
-  }, [game.player])
+  }, [game.player]);
+
+  useEffect(() => {
+    document.body.style.backgroundColor = bgColors[(hashCode(game.seed) + game.round) % bgColors.length];
+  }, [game.seed, game.round]);
 
   function handleFlip() {
     setCardRevealed((state) => !state);
