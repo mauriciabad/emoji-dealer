@@ -72,10 +72,7 @@ function GameContextProvider(props) {
 const GameContextConsumer = GameContext.Consumer;
 
 export function getGameURL({seed, orderedCards}){
-  const params = new URLSearchParams();
-  params.append('s', seed);
-  params.append('c', orderedCards.join(''));
-  return `${process.env.REACT_APP_DOMAIN}?${params.toString()}`;
+  return `${process.env.REACT_APP_DOMAIN}?s=${seed}&c=${orderedCards.join('')}`;
 }
 
 export { GameContext, GameDispatchContext, GameContextProvider, GameContextConsumer };
