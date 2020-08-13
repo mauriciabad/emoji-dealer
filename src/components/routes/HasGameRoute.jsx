@@ -7,7 +7,7 @@ export default function HasGameRoute({ children, ...rest }) {
   const game = useContext(GameContext);
 
   return (
-    <PrivateRoute {...rest} condition={game.seed !== defaultSeed} redirectPath="/game/new">
+    <PrivateRoute {...rest} condition={game.seed !== defaultSeed} redirectPath="/new">
       {children}
     </PrivateRoute>
   );

@@ -59,7 +59,7 @@ export default function AppBarTop() {
           <PersonIcon /><small style={{fontSize: '0.667em'}}>{game.player}</small>
         </IconButton>
         <DialogPlayerNumber open={openPlayerDialog} onClose={handleDialogPlayerClose} />
-        <IconButton edge="end" color="inherit" to="/game/new" component={Link} style={{padding: '0 1rem'}}>
+        <IconButton edge="end" color="inherit" to="/new" component={Link} style={{padding: '0 1rem'}}>
           <RefreshIcon />
         </IconButton>
       </Toolbar>

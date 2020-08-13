@@ -8,6 +8,8 @@ import NavigateNextIcon from '@material-ui/icons/NavigateNext';
 import DialogPlayerNumber from '../components/DialogPlayerNumber';
 import { motion, useAnimation } from "framer-motion";
 import { bgColors } from "../theme";
+import { useLocation, useHistory } from 'react-router-dom';
+import GraphemeSplitter from 'grapheme-splitter';
 
 function hashCode(s) {
   let hash = 0;
@@ -51,6 +53,22 @@ export default function GameView() {
   const [cardRevealed, setCardRevealed] = useState(false);
   const [oldCardRevealed, setOldCardRevealed] = useState(cardRevealed);
   const [oldCard, setOldCard] = useState(game.card);
+
+  const history = useHistory();
+  const location = useLocation();
+
+  const queryParams = new URLSearchParams(location.search);
+  if(queryParams.has('s') && queryParams.has('c')){
+    const seed = queryParams.get('s');
+
+    const cardsString = queryParams.get('c');
+    const splitter = new GraphemeSplitter();
+    const orderedCards = splitter.splitGraphemes(cardsString);
+  
+    dispatchGame({type: 'beginGame', payload: {seed, orderedCards}})
+
+    history.replace('/');
+  }
 
   const handleDialogPlayerClose = () => {
     setOpenPlayerDialog(false);

@@ -31,7 +31,7 @@ export default function GameNewView() {
       const orderedCards = splitter.splitGraphemes(cardsString);
 
       dispatchGame({type: 'beginGame', payload: { orderedCards, player: 1 }});
-      history.replace('/game');
+      history.replace('/');
       shareJoinURL();
   }
 
