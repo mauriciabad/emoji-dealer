@@ -3,16 +3,9 @@ import HeaderFooter from '../components/HeaderFooter';
 import useStyles from './GameNewViewStyles';
 import { TextField, Paper, Button, Typography } from '@material-ui/core';
 import { GameContext } from '../contexts/GameContext';
-import { GameDispatchContext } from '../contexts/GameContext';
+import { GameDispatchContext, getGameURL } from '../contexts/GameContext';
 import { useHistory } from 'react-router-dom';
 import GraphemeSplitter from 'grapheme-splitter';
-
-function getGameURL({seed, orderedCards}){
-  const params = new URLSearchParams();
-  params.append('seed', seed);
-  params.append('cards', orderedCards.join(''));
-  return `${process.env.REACT_APP_DOMAIN}/game/join?${params.toString()}`;
-}
 
 export default function GameNewView() {
   const classes = useStyles();

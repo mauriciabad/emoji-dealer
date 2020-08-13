@@ -4,17 +4,11 @@ import ShareIcon from '@material-ui/icons/Share';
 import RefreshIcon from '@material-ui/icons/Refresh';
 import PersonIcon from '@material-ui/icons/Person';
 import {Link} from 'react-router-dom';
-import { GameContext, defaultSeed } from '../contexts/GameContext';
+import { GameContext, defaultSeed, getGameURL } from '../contexts/GameContext';
 import DialogPlayerNumber from './DialogPlayerNumber';
 import AppBarBgImg from '../assets/backgrounds/wood_pattern_dark.png';
 // import AppBarBgImg2x from '../assets/backgrounds/wood_pattern_dark_@2X.png';
 
-function getGameURL({seed, orderedCards}){
-  const params = new URLSearchParams();
-  params.append('seed', seed);
-  params.append('cards', orderedCards.join(''));
-  return `${process.env.REACT_APP_DOMAIN}/game/join?${params.toString()}`;
-}
 
 export default function AppBarTop() {
   const game = useContext(GameContext);
