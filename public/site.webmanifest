@@ -33,7 +33,7 @@
         }
     ],
     "start_url": ".",
-    "theme_color": "#35363a",
+    "theme_color": "#5a4126",
     "background_color": "#266340",
     "display": "standalone",
     "description": "Controla el aforo de cualquier piscina gracias a la visión por computador.",
