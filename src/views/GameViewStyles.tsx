@@ -13,6 +13,16 @@ export default makeStyles((theme: Theme) => createStyles({
     justifyContent: 'center',
     position: 'relative',
   },
+  mainCardBg: {
+    transition: 'background-color 200ms cubic-bezier(0.45, 0.05, 0.55, 0.95)',
+    position: 'absolute',
+    top: 0,
+    bottom: 0,
+    left: 0,
+    right: 0,
+    mixBlendMode: 'multiply',
+    zIndex: -1,
+  },
   card: {
     position: 'absolute',
     perspective: 1000,

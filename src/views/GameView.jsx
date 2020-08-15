@@ -82,10 +82,6 @@ export default function GameView() {
     if(!game.player) setOpenPlayerDialog(true);
   }, [game.player]);
 
-  useEffect(() => {
-    document.body.style.backgroundColor = bgColors[(hashCode(game.seed) + game.round) % bgColors.length];
-  }, [game.seed, game.round]);
-
   function handleFlip() {
     setCardRevealed((state) => !state);
   }
@@ -140,6 +136,9 @@ export default function GameView() {
 
   return (
     <HeaderFooter className={classes.root}>
+
+      <div className={classes.mainCardBg} style={{backgroundColor: bgColors[(hashCode(game.seed) + game.round) % bgColors.length]}}></div>
+
       <div className={classes.roundButtons}>
         <Typography variant="h3" className={classes.roundButtonsTitle}>Round {game.round}</Typography>
       </div>
