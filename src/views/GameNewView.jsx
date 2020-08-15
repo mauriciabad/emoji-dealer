@@ -20,7 +20,7 @@ export default function GameNewView() {
     const invitationURL = getGameURL(game);
 
     if(navigator.share){
-      navigator.share({title: 'Game invitation', url: invitationURL})
+      navigator.share({text: invitationURL})
     }
   }
 
