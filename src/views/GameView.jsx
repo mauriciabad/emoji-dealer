@@ -24,21 +24,6 @@ function hashCode(s) {
   return Math.abs(hash);
 };
 
-const variants = {
-  left: {
-    x: -window.innerWidth/2 - 206, // 206 is half the diagonal of the card in pixels
-    rotate: -180,
-  },
-  center: {
-    x: "0%",
-    rotate: 0,
-  },
-  right: {
-    x: window.innerWidth/2 + 206,
-    rotate: 180,
-  },
-}
-
 export default function GameView() {
   const classes = useStyles();
 
@@ -118,6 +103,34 @@ export default function GameView() {
 
     dispatchGame({type: 'nextRound'});
   }
+
+  let variants = {
+    left: {
+      x: -window.innerWidth/2 - 206, // 206 is half the diagonal of the card in pixels
+      rotate: -180,
+    },
+    center: {
+      x: "0%",
+      rotate: 0,
+    },
+    right: {
+      x: window.innerWidth/2 + 206,
+      rotate: 180,
+    },
+  };
+
+  useEffect(() => {
+    window.addEventListener("resize", function() {
+      variants.left.x = -window.innerWidth/2 - 206;
+      variants.right.x = window.innerWidth/2 - 206;
+
+      controlsCard.setVariants(variants);
+      controlsCardOld.setVariants(variants);
+
+      controlsCardOld.set('left');
+      controlsCard.set("center");
+    });
+  }, [controlsCard, controlsCardOld, variants]);
 
   return (
     <HeaderFooter className={classes.root}>
