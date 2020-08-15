@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react';
 import HeaderFooter from '../components/HeaderFooter';
 import useStyles from './GameNewViewStyles';
-import { TextField, Paper, Button, Typography } from '@material-ui/core';
+import { TextField, Paper, Button, Typography, Snackbar } from '@material-ui/core';
 import { GameContext } from '../contexts/GameContext';
 import { GameDispatchContext, getGameURL } from '../contexts/GameContext';
 import { useHistory } from 'react-router-dom';
@@ -13,6 +13,8 @@ export default function GameNewView() {
   const dispatchGame = useContext(GameDispatchContext);
   let [cardsString, setCardsString] = useState(game.orderedCards.join(''));
   const history = useHistory();
+
+  const [showError, setShowError] = useState(false);
 
   const shareJoinURL = () => {
     const invitationURL = getGameURL(game);
@@ -27,12 +29,18 @@ export default function GameNewView() {
   }
 
   function handleCreateClick() {
+    if(cardsString !== ''){
+      setShowError(false);
+
       const splitter = new GraphemeSplitter();
       const orderedCards = splitter.splitGraphemes(cardsString);
 
       dispatchGame({type: 'beginGame', payload: { orderedCards, player: 1 }});
       history.replace('/');
       shareJoinURL();
+    } else {
+      setShowError(true);
+    }
   }
 
   return (
@@ -47,12 +55,16 @@ export default function GameNewView() {
           defaultValue={cardsString}
           variant="outlined"
           className={classes.textArea}
-          value={cardsString} onChange={handleCardsStringChange}
+          value={cardsString}
+          onChange={handleCardsStringChange}
+          required="true"
           InputProps={{
             classes: {
               input: classes.textAreaInput,
             },
           }}
+          error={showError}
+          helperText={showError && "Enter some emojis"}
         />
       </Paper>
       <Button variant="contained" color="primary" onClick={handleCreateClick}>Create</Button>
