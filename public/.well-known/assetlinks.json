@@ -1,0 +1,5 @@
+[{
+      "relation": ["delegate_permission/common.handle_all_urls"],
+      "target" : { "namespace": "android_app", "package_name": "app.netlify.emojidealer.twa",
+                   "sha256_cert_fingerprints": ["10:06:54:80:6A:AC:D3:F5:2B:00:62:13:15:CA:40:CA:83:DE:FD:3D:39:4F:C6:D3:31:C2:40:80:26:DB:EE:D8"] }
+    }]
