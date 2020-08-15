@@ -59,12 +59,10 @@ export default function GameNewView() {
           multiline
           rows={3}
           autoFocus
-          defaultValue={cardsString}
           variant="outlined"
           className={classes.textArea}
           value={cardsString}
           onChange={handleCardsStringChange}
-          required="true"
           InputProps={{
             classes: {
               input: classes.textAreaInput,
