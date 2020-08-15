@@ -150,6 +150,8 @@ export default function GameView() {
         })}
       </div>
 
+      <Typography variant="body2" className={classes.seed}>Room: {game.seed}</Typography>
+
       <div className={classes.mainCard}>
         <motion.div
           animate={controlsCardOld}

@@ -92,5 +92,10 @@ export default makeStyles((theme: Theme) => createStyles({
     width: '100vw',
     height: '56px',
     boxShadow: '0px -7px 8px -4px rgba(0,0,0,0.2), 0px -12px 17px 2px rgba(0,0,0,0.14), 0px -5px 22px 4px rgba(0,0,0,0.12) !important'
+  },
+  seed: {
+    margin: `${theme.spacing(1)}px auto`,
+    fontWeight: 'bold',
+    opacity: 0.6667,
   }
 }));
