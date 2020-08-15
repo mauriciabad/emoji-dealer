@@ -54,6 +54,12 @@ export default function GameView() {
   const [oldCardRevealed, setOldCardRevealed] = useState(cardRevealed);
   const [oldCard, setOldCard] = useState(game.card);
 
+  document.addEventListener("visibilitychange", function () {
+    if (document.hidden) {
+      setCardRevealed(false);
+    }
+  }, false);
+
   const history = useHistory();
   const location = useLocation();
 
