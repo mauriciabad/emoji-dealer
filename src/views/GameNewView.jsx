@@ -20,7 +20,7 @@ export default function GameNewView() {
     const invitationURL = getGameURL(game);
 
     if(navigator.share){
-      navigator.share({text: invitationURL})
+      navigator.share({text: `Room: ${game.seed}\nCards: ${game.orderedCards.join('')}\n${game.round > 1 ? `Round: ${game.round}\n` : ''}\n${invitationURL}`})
     }
   }
 

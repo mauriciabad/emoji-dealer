@@ -9,7 +9,6 @@ import DialogPlayerNumber from './DialogPlayerNumber';
 import AppBarBgImg from '../assets/backgrounds/wood_pattern_dark.png';
 // import AppBarBgImg2x from '../assets/backgrounds/wood_pattern_dark_@2X.png';
 
-
 export default function AppBarTop() {
   const game = useContext(GameContext);
 
@@ -30,7 +29,7 @@ export default function AppBarTop() {
     const invitationURL = getGameURL(game);
 
     if(navigator.share){
-      navigator.share({text: invitationURL})
+      navigator.share({text: `Room: ${game.seed}\nCards: ${game.orderedCards.join('')}\n${game.round > 1 ? `Round: ${game.round}\n` : ''}\n${invitationURL}`})
     }else {
       if(navigator.clipboard) {
         navigator.clipboard.writeText(invitationURL);
