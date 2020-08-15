@@ -30,7 +30,7 @@ export default function AppBarTop() {
     const invitationURL = getGameURL(game);
 
     if(navigator.share){
-      navigator.share({title: 'Game invitation', url: invitationURL})
+      navigator.share({text: invitationURL})
     }else {
       if(navigator.clipboard) {
         navigator.clipboard.writeText(invitationURL);
