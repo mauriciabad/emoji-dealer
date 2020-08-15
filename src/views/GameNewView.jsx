@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import HeaderFooter from '../components/HeaderFooter';
 import useStyles from './GameNewViewStyles';
 import { TextField, Paper, Button, Typography } from '@material-ui/core';
@@ -28,20 +28,27 @@ export default function GameNewView() {
     setCardsString(e.target.value.replace(/\s/g, ''));
   }
 
-  async function handleCreateClick() {
+  function handleCreateClick() {
     if(cardsString !== ''){
       setShowError(false);
 
       const splitter = new GraphemeSplitter();
       const orderedCards = splitter.splitGraphemes(cardsString);
 
-      await dispatchGame({type: 'beginGame', payload: { orderedCards, player: 1 }});
-      history.replace('/');
-      shareJoinURL();
+      dispatchGame({type: 'beginGame', payload: { orderedCards, player: 1 }});
+      // continues in useEffect
     } else {
       setShowError(true);
     }
   }
+  
+  useEffect(() => {
+    return () => {
+      history.replace('/');
+      shareJoinURL();
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [game.seed]);
 
   return (
     <HeaderFooter className={classes.root}>
