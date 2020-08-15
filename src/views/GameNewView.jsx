@@ -1,9 +1,9 @@
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useState, useContext } from 'react';
 import HeaderFooter from '../components/HeaderFooter';
 import useStyles from './GameNewViewStyles';
 import { TextField, Paper, Button, Typography } from '@material-ui/core';
 import { GameContext } from '../contexts/GameContext';
-import { GameDispatchContext, getGameURL } from '../contexts/GameContext';
+import { GameDispatchContext } from '../contexts/GameContext';
 import { useHistory } from 'react-router-dom';
 import GraphemeSplitter from 'grapheme-splitter';
 
@@ -15,14 +15,6 @@ export default function GameNewView() {
   const history = useHistory();
 
   const [showError, setShowError] = useState(false);
-
-  const shareJoinURL = () => {
-    const invitationURL = getGameURL(game);
-
-    if(navigator.share){
-      navigator.share({text: `Room: ${game.seed}\nCards: ${game.orderedCards.join('')}\n${game.round > 1 ? `Round: ${game.round}\n` : ''}\n${invitationURL}`})
-    }
-  }
 
   function handleCardsStringChange(e) {
     setCardsString(e.target.value.replace(/\s/g, ''));
@@ -36,19 +28,11 @@ export default function GameNewView() {
       const orderedCards = splitter.splitGraphemes(cardsString);
 
       dispatchGame({type: 'beginGame', payload: { orderedCards, player: 1 }});
-      // continues in useEffect
+      history.replace('/');
     } else {
       setShowError(true);
     }
   }
-  
-  useEffect(() => {
-    return () => {
-      history.replace('/');
-      shareJoinURL();
-    }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [game.seed]);
 
   return (
     <HeaderFooter className={classes.root}>

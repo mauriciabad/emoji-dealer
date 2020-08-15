@@ -4,7 +4,7 @@ import ShareIcon from '@material-ui/icons/Share';
 import RefreshIcon from '@material-ui/icons/Refresh';
 import PersonIcon from '@material-ui/icons/Person';
 import {Link} from 'react-router-dom';
-import { GameContext, defaultSeed, getGameURL } from '../contexts/GameContext';
+import { GameContext, defaultSeed, getGameURL, getGameShareText } from '../contexts/GameContext';
 import DialogPlayerNumber from './DialogPlayerNumber';
 import AppBarBgImg from '../assets/backgrounds/wood_pattern_dark.png';
 // import AppBarBgImg2x from '../assets/backgrounds/wood_pattern_dark_@2X.png';
@@ -26,13 +26,11 @@ export default function AppBarTop() {
   };
 
   const shareJoinURL = () => {
-    const invitationURL = getGameURL(game);
-
     if(navigator.share){
-      navigator.share({text: `Room: ${game.seed}\nCards: ${game.orderedCards.join('')}\n${game.round > 1 ? `Round: ${game.round}\n` : ''}\n${invitationURL}`})
+      navigator.share({text: getGameShareText(game)})
     }else {
       if(navigator.clipboard) {
-        navigator.clipboard.writeText(invitationURL);
+        navigator.clipboard.writeText(getGameURL(game));
         setOpenClipboardToast(true);
       }
     }

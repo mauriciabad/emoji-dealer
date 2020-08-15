@@ -31,7 +31,11 @@ function shuffle(array, randomGenerator) {
 const reducer = (state, {type, payload}) => {
   switch (type) {
     case "beginGame":
-      return { ...defaultGame, seed: Math.random().toString(36).substring(2, 6), ...payload };
+      const newGame = { ...defaultGame, seed: Math.random().toString(36).substring(2, 6), ...payload };
+      if(navigator.share){
+        navigator.share({text: getGameShareText(newGame)})
+      }
+      return newGame;
     case "shuffle":
       const randomGenerator = seedrandom(`${state.seed}-${state.round}`);
       return { ...state, shuffledCards: shuffle(state.orderedCards, randomGenerator) };
@@ -73,6 +77,10 @@ const GameContextConsumer = GameContext.Consumer;
 
 export function getGameURL({seed, orderedCards, round}){
   return `${process.env.REACT_APP_DOMAIN}?s=${seed}&c=${orderedCards.join('')}${round !== 1 ? `&r=${round}` : ''}`;
+}
+export function getGameShareText({seed, orderedCards, round}){
+  const invitationURL = getGameURL({seed, orderedCards, round});
+  return `Room: ${seed}\nCards: ${orderedCards.join('')}\n${round > 1 ? `Round: ${round}\n` : ''}\n${invitationURL}`;
 }
 
 export { GameContext, GameDispatchContext, GameContextProvider, GameContextConsumer };
