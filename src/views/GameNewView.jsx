@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react';
 import HeaderFooter from '../components/HeaderFooter';
 import useStyles from './GameNewViewStyles';
-import { TextField, Paper, Button, Typography, Snackbar } from '@material-ui/core';
+import { TextField, Paper, Button, Typography } from '@material-ui/core';
 import { GameContext } from '../contexts/GameContext';
 import { GameDispatchContext, getGameURL } from '../contexts/GameContext';
 import { useHistory } from 'react-router-dom';
