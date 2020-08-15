@@ -28,14 +28,14 @@ export default function GameNewView() {
     setCardsString(e.target.value.replace(/\s/g, ''));
   }
 
-  function handleCreateClick() {
+  async function handleCreateClick() {
     if(cardsString !== ''){
       setShowError(false);
 
       const splitter = new GraphemeSplitter();
       const orderedCards = splitter.splitGraphemes(cardsString);
 
-      dispatchGame({type: 'beginGame', payload: { orderedCards, player: 1 }});
+      await dispatchGame({type: 'beginGame', payload: { orderedCards, player: 1 }});
       history.replace('/');
       shareJoinURL();
     } else {
