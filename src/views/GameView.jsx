@@ -52,14 +52,20 @@ export default function GameView() {
   if(queryParams.has('s') && queryParams.has('c')){
     const seed = queryParams.get('s');
     const round = parseInt(queryParams.get('r')) || 1;
-
     const cardsString = queryParams.get('c');
-    const splitter = new GraphemeSplitter();
-    const orderedCards = splitter.splitGraphemes(cardsString);
-  
-    dispatchGame({type: 'beginGame', payload: {seed, orderedCards, round}})
 
-    history.replace('/');
+    if(
+      seed !== game.seed ||
+      round > game.round ||
+      cardsString !== game.orderedCards.join('')
+    ) {
+      const splitter = new GraphemeSplitter();
+      const orderedCards = splitter.splitGraphemes(cardsString);
+    
+      dispatchGame({type: 'beginGame', payload: {seed, orderedCards, round}})
+  
+      history.replace('/');
+    }
   }
 
   const handleDialogPlayerClose = () => {
