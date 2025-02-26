@@ -1,5 +1,12 @@
-[{
-  "relation": ["delegate_permission/common.handle_all_urls"],
-  "target" : { "namespace": "android_app", "package_name": "app.netlify.emojidealer.twa",
-               "sha256_cert_fingerprints": ["B5:F4:F4:1D:A5:F6:23:D2:33:00:07:DC:50:1A:DD:AA:60:FE:03:A6:F3:86:CB:AA:9A:39:BA:C8:FF:45:1E:8F"] }
-}]
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "app.mauri.emojidealer.twa",
+      "sha256_cert_fingerprints": [
+        "B5:F4:F4:1D:A5:F6:23:D2:33:00:07:DC:50:1A:DD:AA:60:FE:03:A6:F3:86:CB:AA:9A:39:BA:C8:FF:45:1E:8F"
+      ]
+    }
+  }
+]

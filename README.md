@@ -1,7 +1,5 @@
 # Card Dealer app
 
-[![Netlify Status](https://api.netlify.com/api/v1/badges/17eb94b6-6fcc-4dad-80e5-cde787a090ed/deploy-status)](https://app.netlify.com/sites/emojidealer/deploys)
-
 <p align="center">
   <img height="400" src="docs/preview.gif" />
 </p>
@@ -28,7 +26,7 @@ The page will reload if you make edits. You will also see any lint errors in the
 
 ## Deploy
 
-> 100% automated with [Netlify](https://app.netlify.com/sites/card-dealer), just push to master. 🧙🏻‍♂️
+> 100% automated with GitHub Actions, just push to master. 🧙🏻‍♂️
 
 Build the app for production to the `build` folder with:
 
